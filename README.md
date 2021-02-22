@@ -1,5 +1,12 @@
 # git-lfs-loader
 
+[![NPM Version][shield-npm]][npm-url]
+[![Downloads Stats][shield-downloads]][npm-url]
+
+[npm-url]: https://npmjs.org/package/git-lfs-loader
+[shield-npm]: https://img.shields.io/npm/v/git-lfs-loader.svg
+[shield-downloads]: https://img.shields.io/npm/dm/git-lfs-loader.svg
+
 A Webpack loader to prevent accidentally importing Git LFS pointer files.
 
 ## Installation
