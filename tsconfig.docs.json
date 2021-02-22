@@ -1,0 +1,7 @@
+// The purpose of this file is just to check the docs.
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "docs/**/*",
+  ],
+}

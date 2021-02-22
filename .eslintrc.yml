@@ -1,0 +1,53 @@
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+plugins:
+  - import
+root: true
+parserOptions:
+  project:
+    - ./tsconfig.json
+  sourceType: module
+  tsconfigRootDir: .
+env:
+  node: true
+rules:
+  "@typescript-eslint/explicit-module-boundary-types": off
+  "@typescript-eslint/member-delimiter-style": [
+    error,
+    {
+      multiline: {
+        delimiter: none,
+      },
+      singleline: {
+        delimiter: comma,
+        requireLast: false,
+      },
+    },
+  ]
+  "@typescript-eslint/no-explicit-any": off
+  "@typescript-eslint/no-unused-vars": off
+  "arrow-spacing": [ error, { before: true, after: true } ]
+  "block-spacing": [ error, always ]
+  "comma-style": [ error, last ]
+  "import/order": [
+    error,
+    {
+      alphabetize: { order: asc },
+      groups: [ builtin, external, internal, parent, sibling ],
+      newlines-between: always,
+    },
+  ]
+  "indent": [ error, 2, { SwitchCase: 1 } ]
+  "key-spacing": [ error, { beforeColon: false, afterColon: true, mode: minimum } ]
+  "keyword-spacing": [ error, { before: true, after: true } ]
+  "no-constant-condition": error
+  "no-duplicate-imports": [ error, { includeExports: true } ]
+  "no-unused-vars": off # Should be turned off when using @typescript-eslint.
+  "no-var": error
+  "prefer-const": error
+  "semi-spacing": [ error, { before: false, after: true } ]
+  "semi": [ error, never ]
+  "spaced-comment": [ error, always ]

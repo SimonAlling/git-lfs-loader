@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true, // For documentation examples.
+    "declaration": false,
+    "lib": [ "es2018" ], // Supported by Node 10 (https://stackoverflow.com/a/57607634/2135002).
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "paths": {
+      "git-lfs-parser": ["."], // So imports work in documentation examples.
+    },
+    "removeComments": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "es2018", // Supported by Node 10 (https://stackoverflow.com/a/57607634/2135002).
+  },
+  "include": [
+    // Everything is included for optimal real-time IDE feedback.
+    "**/*.js",
+    "**/*.ts",
+  ],
+}

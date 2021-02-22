@@ -1,0 +1,85 @@
+{
+  "name": "git-lfs-loader",
+  "version": "1.0.0",
+  "description": "A Webpack loader to prevent accidentally importing Git LFS pointer files",
+  "keywords": [
+    "loader",
+    "git",
+    "lfs",
+    "webpack"
+  ],
+  "author": {
+    "name": "Simon Alling",
+    "email": "alling.simon@gmail.com",
+    "url": "https://simonalling.se"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/SimonAlling/git-lfs-loader",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SimonAlling/git-lfs-loader"
+  },
+  "bugs": {
+    "url": "https://github.com/SimonAlling/git-lfs-loader/issues"
+  },
+  "main": "dist/index",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "build-docs": "tsc -p tsconfig.docs.json && embedme README.md --source-root docs/examples",
+    "check-docs": "npm run build-docs -- --verify",
+    "clean": "rimraf dist",
+    "integration-tests": "npm run build && cd test && npm ci && npm install --no-save .. && npm run build",
+    "lint": "eslint . --ext .ts,.js",
+    "make": "npm run lint && npm run build && npm test && npm run build-docs",
+    "prepublishOnly": "npm run verify && cli-confirm 'Publish?'",
+    "test": "npm run unit-tests && npm run integration-tests",
+    "unit-tests": "jest",
+    "verify": "repository-check-dirty && npm run make && repository-check-dirty && npm pack"
+  },
+  "sideEffects": false,
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "<rootDir>/tsconfig.json"
+      }
+    },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": ".+\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run verify"
+    }
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "loader-utils": "^2.0.0",
+    "schema-utils": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/json-schema": "^7.0.7",
+    "@types/loader-utils": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "cli-confirm": "^1.0.1",
+    "embedme": "^1.22.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^5.0.9",
+    "jest": "^26.6.3",
+    "repository-check-dirty": "^2.0.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.1",
+    "typescript": "^4.1.5"
+  }
+}

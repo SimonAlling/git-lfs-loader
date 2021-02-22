@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  nightly:
+    name: CI Build
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Git LFS
+        run: |
+          sudo apt-get install git-lfs
+      - name: Install dependencies
+        run: |
+          npm ci
+      - name: Lint
+        run: |
+          npm run lint
+      - name: Build
+        run: |
+          npm run build
+      - name: Unit tests
+        run: |
+          npm run unit-tests
+      - name: Integration tests
+        run: |
+          npm run integration-tests
+      - name: Check docs # Docs must not have been built so it can detect potential diffs.
+        run: |
+          npm run check-docs
+        env:
+          CI: true
